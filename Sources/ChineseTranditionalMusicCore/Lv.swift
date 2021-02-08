@@ -1,4 +1,4 @@
-public enum 律呂: CaseIterable {
+public enum 律呂: String, CaseIterable {
     case 黃鐘
     case 大呂
     case 太簇
