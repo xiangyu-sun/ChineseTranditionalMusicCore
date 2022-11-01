@@ -1,9 +1,26 @@
+import ChineseAstrologyCalendar
+
 public enum 階名 {
     case 宮
     case 商
     case 角
     case 徵
     case 羽
+    
+    public var wuxing: Wuxing {
+        switch self {
+        case .宮:
+            return .tu
+        case .商:
+            return .jin
+        case .角:
+            return .mu
+        case .徵:
+            return .huo
+        case .羽:
+            return .shui
+        }
+    }
 }
 
 public enum 變聲 {
