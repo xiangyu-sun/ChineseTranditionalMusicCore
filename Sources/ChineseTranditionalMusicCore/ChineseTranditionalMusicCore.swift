@@ -21,6 +21,21 @@ public enum 階名 {
             return .shui
         }
     }
+    
+    public var tangDynastySymbol: String {
+        switch self {
+        case .宮:
+            return "合"
+        case .商:
+            return "四"
+        case .角:
+            return "乙"
+        case .徵:
+            return "尺"
+        case .羽:
+            return "工"
+        }
+    }
 }
 
 public enum 變聲 {
