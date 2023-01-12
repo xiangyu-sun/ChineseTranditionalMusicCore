@@ -18,6 +18,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
       .package(url: "git@github.com:xiangyu-sun/ChineseAstrologyCalendar.git", .branchItem("master")),
       .package(url: "https://github.com/airbnb/swift", from: "1.0.0"),
+      .package(url: "https://github.com/xiangyu-sun/MusicTheory", .branchItem("master"))
+      
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -25,7 +27,8 @@ let package = Package(
         .target(
             name: "ChineseTranditionalMusicCore",
             dependencies: [
-              .product(name: "ChineseAstrologyCalendar", package: "ChineseAstrologyCalendar")
+              .product(name: "ChineseAstrologyCalendar", package: "ChineseAstrologyCalendar"),
+              .product(name: "MusicTheory", package: "MusicTheory")
             ]),
         .testTarget(
             name: "ChineseTranditionalMusicCoreTests",

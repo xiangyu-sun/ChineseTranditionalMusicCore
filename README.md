@@ -7,3 +7,6 @@
 https://zh.wikipedia.org/wiki/中國五聲音階
 https://zh.wikipedia.org/wiki/十二律
 https://zh.wikipedia.org/wiki/中国音乐
+
+
+https://zh.wikipedia.org/wiki/十二平均律

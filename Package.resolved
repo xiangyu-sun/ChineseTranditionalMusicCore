@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "MusicTheory",
+        "repositoryURL": "https://github.com/xiangyu-sun/MusicTheory",
+        "state": {
+          "branch": "master",
+          "revision": "848677cde4c93681010a8e80dc524b322f37f549",
+          "version": null
+        }
+      },
+      {
         "package": "AirbnbSwift",
         "repositoryURL": "https://github.com/airbnb/swift",
         "state": {
