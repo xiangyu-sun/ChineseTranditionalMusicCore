@@ -92,7 +92,8 @@ public enum 律呂: Int, CaseIterable, YinYangIdentifiable {
   case 南呂
   case 無射
   case 應鐘
-  
+
+  // MARK: Public
 
   public var dizhi: Dizhi {
     switch self {

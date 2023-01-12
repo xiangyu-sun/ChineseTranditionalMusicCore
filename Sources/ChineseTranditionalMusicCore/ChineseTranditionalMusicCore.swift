@@ -3,14 +3,23 @@ import MusicTheory
 
 // MARK: - 階名
 
-public enum 階名 {
-  case 宮
+public enum 階名: Int, CaseIterable, ExpressibleByIntegerLiteral {
+
+  case 宮 = 1
   case 商
   case 角
   case 徵
   case 羽
 
+  // MARK: Lifecycle
+
+  public init(integerLiteral value: Int) {
+    self = 階名(rawValue: value) ?? 階名.宮
+  }
+
   // MARK: Public
+
+  public typealias IntegerLiteralType = Int
 
   public var key: Key {
     switch self {
