@@ -11,7 +11,7 @@ public enum 階名 {
   case 羽
 
   // MARK: Public
-  
+
   public var key: Key {
     switch self {
     case .宮:
@@ -64,36 +64,40 @@ public enum 變聲 {
   case 清(階名)
   case 變(階名)
 
-  static let 清角 = 變聲.清(.角)
-  static let 變徵 = 變聲.變(.徵)
-  static let 清羽 = 變聲.清(.羽)
-  static let 變宮 = 變聲.變(.宮)
-  
+  // MARK: Public
+
   public var key: Key {
     switch self {
-    case .清( let name):
+    case .清(let name):
       switch name {
       case .角:
         return Key(type: .f)
 
       case .羽:
         return Key(type: .a, accidental: .sharp)
-        
+
       default:
         fatalError()
       }
 
-    case . 變( let name):
+    case . 變(let name):
       switch name {
       case .宮:
         return Key(type: .b)
 
       case .徵:
         return Key(type: .f, accidental: .sharp)
-        
+
       default:
-          fatalError()
+        fatalError()
       }
     }
   }
+
+  // MARK: Internal
+
+  static let 清角 = 變聲.清(.角)
+  static let 變徵 = 變聲.變(.徵)
+  static let 清羽 = 變聲.清(.羽)
+  static let 變宮 = 變聲.變(.宮)
 }
