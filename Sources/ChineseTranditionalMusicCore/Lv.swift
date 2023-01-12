@@ -1,8 +1,9 @@
 import ChineseAstrologyCalendar
 import MusicTheory
 
-public enum 律呂: String, CaseIterable {
-  case 黃鐘
+/// 奇数各律称 “律”，偶数各律称“吕”
+public enum 律呂: Int, CaseIterable, YinYangIdentifiable {
+  case 黃鐘 = 1
   case 大呂
   case 太簇
   case 夾鐘
