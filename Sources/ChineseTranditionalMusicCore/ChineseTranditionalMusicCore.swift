@@ -3,110 +3,106 @@ import MusicTheory
 
 // MARK: - 階名
 
-public enum 階名: Int, CaseIterable, ExpressibleByIntegerLiteral {
 
-  case 宮 = 1
-  case 商
-  case 角
-  case 徵
-  case 羽
+extension Key {
+  
+  public static let gong = Key(type: .c)
+  public static let shang = Key(type: .d)
+  public static let jue = Key(type: .e)
+  public static let qingjue = Key(type: .f)
+  public static let bianhui = Key(type: .f, accidental: .sharp)
+  public static let wei = Key(type: .g)
+  public static let qingyu = Key(type: .a, accidental: .sharp)
+  public static let yu = Key(type: .a)
+  public static let biangong = Key(type: .b)
+  
+  public static let wuyin = [gong, shang, jue, wei, yu]
+  public static let qishen = [gong, shang, jue, qingyu, wei, yu, biangong]
+}
 
-  // MARK: Lifecycle
-
-  public init(integerLiteral value: Int) {
-    self = 階名(rawValue: value) ?? 階名.宮
-  }
-
-  // MARK: Public
-
-  public typealias IntegerLiteralType = Int
-
-  public var key: Key {
-    switch self {
-    case .宮:
-      return Key(type: .c)
-    case .商:
-      return Key(type: .d)
-    case .角:
-      return Key(type: .e)
-    case .徵:
-      return Key(type: .g)
-    case .羽:
-      return Key(type: .a)
-    }
-  }
-
+extension Key {
   public var wuxing: Wuxing {
-    switch self {
-    case .宮:
+    switch self.type {
+    case .c:
       return .tu
-    case .商:
+    case .d:
       return .jin
-    case .角:
+    case .e:
       return .mu
-    case .徵:
+    case .g:
       return .huo
-    case .羽:
+    case .a:
       return .shui
+    default:
+      fatalError()
     }
   }
-
-  public var tangDynastySymbol: String {
-    switch self {
-    case .宮:
+  
+  public var wuyinChineseName: String {
+    switch self.type {
+    case .c:
+      return "宮"
+    case .d:
+      return "商"
+    case .e:
+      return "角"
+    case .g:
+      return "徵"
+    case .a:
+      return "羽"
+    default:
+      fatalError()
+    }
+  }
+  
+  public var wuyinTangDynastySymbol: String {
+    switch self.type {
+    case .c:
       return "合"
-    case .商:
+    case .d:
       return "四"
-    case .角:
+    case .e:
       return "乙"
-    case .徵:
+    case .g:
       return "尺"
-    case .羽:
+    case .a:
       return "工"
+    default:
+      fatalError()
+    }
+  }
+}
+
+extension Key {
+  public var qiShenChineseName: String {
+    switch self.type {
+    case .c:
+      return "宮"
+    case .d:
+      return "商"
+    case .e:
+      return "角"
+    case .f:
+      return "清角"
+    case .f where self.accidental == .sharp:
+      return "變徵"
+    case .g:
+      return "徵"
+    case .a where self.accidental == .sharp:
+      return "清羽"
+    case .a:
+      return "羽"
+    case .b:
+      return "變宮"
+    default:
+      fatalError()
     }
   }
 }
 
 // MARK: - 變聲
 
-public enum 變聲 {
-  case 清(階名)
-  case 變(階名)
-
-  // MARK: Public
-
-  public var key: Key {
-    switch self {
-    case .清(let name):
-      switch name {
-      case .角:
-        return Key(type: .f)
-
-      case .羽:
-        return Key(type: .a, accidental: .sharp)
-
-      default:
-        fatalError()
-      }
-
-    case . 變(let name):
-      switch name {
-      case .宮:
-        return Key(type: .b)
-
-      case .徵:
-        return Key(type: .f, accidental: .sharp)
-
-      default:
-        fatalError()
-      }
-    }
-  }
-
-  // MARK: Internal
-
-  static let 清角 = 變聲.清(.角)
-  static let 變徵 = 變聲.變(.徵)
-  static let 清羽 = 變聲.清(.羽)
-  static let 變宮 = 變聲.變(.宮)
+public enum 變 {
+  case 清
+  case 變
 }
