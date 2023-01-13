@@ -81,7 +81,7 @@ extension Key {
       return "商"
     case .e:
       return "角"
-    case .f:
+    case .f where accidental == .natural:
       return "清角"
     case .f where accidental == .sharp:
       return "變徵"
@@ -89,7 +89,7 @@ extension Key {
       return "徵"
     case .a where accidental == .sharp:
       return "清羽"
-    case .a:
+    case .a where accidental == .natural:
       return "羽"
     case .b:
       return "變宮"

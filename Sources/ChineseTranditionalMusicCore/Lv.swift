@@ -50,25 +50,25 @@ extension Key {
 extension Key {
   public var lvlvDescription: String {
     switch type {
-    case .c:
+    case .c where accidental == .natural:
       return "黃鐘"
     case .c where accidental == .sharp:
       return "大呂"
-    case .d:
+    case .d where accidental == .natural:
       return "太簇"
     case .d where accidental == .sharp:
       return "夾鐘"
     case .e:
       return "姑洗"
-    case .a where accidental == .sharp:
+    case .f where accidental == .natural:
       return "仲呂"
     case .f where accidental == .sharp:
       return "蕤賓"
-    case .g:
+    case .g where accidental == .natural:
       return "林鐘"
     case .g where accidental == .sharp:
       return "夷則"
-    case .a:
+    case .a where accidental == .natural:
       return "南呂"
     case .a where accidental == .sharp:
       return "無射"
