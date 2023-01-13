@@ -3,9 +3,8 @@ import MusicTheory
 
 // MARK: - 階名
 
-
 extension Key {
-  
+
   public static let gong = Key(type: .c)
   public static let shang = Key(type: .d)
   public static let jue = Key(type: .e)
@@ -15,14 +14,14 @@ extension Key {
   public static let qingyu = Key(type: .a, accidental: .sharp)
   public static let yu = Key(type: .a)
   public static let biangong = Key(type: .b)
-  
+
   public static let wuyin = [gong, shang, jue, wei, yu]
   public static let qishen = [gong, shang, jue, qingyu, wei, yu, biangong]
 }
 
 extension Key {
   public var wuxing: Wuxing {
-    switch self.type {
+    switch type {
     case .c:
       return .tu
     case .d:
@@ -37,9 +36,9 @@ extension Key {
       fatalError()
     }
   }
-  
+
   public var wuyinChineseName: String {
-    switch self.type {
+    switch type {
     case .c:
       return "宮"
     case .d:
@@ -54,9 +53,9 @@ extension Key {
       fatalError()
     }
   }
-  
+
   public var wuyinTangDynastySymbol: String {
-    switch self.type {
+    switch type {
     case .c:
       return "合"
     case .d:
@@ -75,7 +74,7 @@ extension Key {
 
 extension Key {
   public var qiShenChineseName: String {
-    switch self.type {
+    switch type {
     case .c:
       return "宮"
     case .d:
@@ -84,11 +83,11 @@ extension Key {
       return "角"
     case .f:
       return "清角"
-    case .f where self.accidental == .sharp:
+    case .f where accidental == .sharp:
       return "變徵"
     case .g:
       return "徵"
-    case .a where self.accidental == .sharp:
+    case .a where accidental == .sharp:
       return "清羽"
     case .a:
       return "羽"
@@ -100,7 +99,7 @@ extension Key {
   }
 }
 
-// MARK: - 變聲
+// MARK: - 變
 
 public enum 變 {
   case 清
