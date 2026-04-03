@@ -23,15 +23,15 @@ extension Key {
   public var wuxing: Wuxing {
     switch type {
     case .c:
-      return .tu
+      return .earth
     case .d:
-      return .jin
+      return .metal
     case .e:
-      return .mu
+      return .wood
     case .g:
-      return .huo
+      return .fire
     case .a:
-      return .shui
+      return .water
     default:
       fatalError()
     }

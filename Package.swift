@@ -16,7 +16,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-      .package(url: "git@github.com:xiangyu-sun/ChineseAstrologyCalendar.git", .branchItem("master")),
+      .package(url: "https://github.com/xiangyu-sun/ChineseAstrologyCalendar.git", .branchItem("master")),
       .package(url: "https://github.com/airbnb/swift", from: "1.0.0"),
       .package(url: "https://github.com/xiangyu-sun/MusicTheory", .branchItem("master"))
       
