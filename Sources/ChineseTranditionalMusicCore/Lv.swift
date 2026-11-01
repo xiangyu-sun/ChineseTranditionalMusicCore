@@ -79,3 +79,66 @@ extension Key {
     }
   }
 }
+
+extension Key {
+  /// The 十二律呂 name in the given language. `.zhHant` equals ``lvlvDescription``.
+  public func localizedLvlvName(in language: DisplayLanguage) -> String {
+    switch language {
+    case .zhHant:
+      return lvlvDescription
+    case .zhHans:
+      return Self.lvlvNames(at: lvlvIndex).hans
+    default:
+      return Self.lvlvNames(at: lvlvIndex).pinyin
+    }
+  }
+
+  private var lvlvIndex: Int {
+    switch type {
+    case .c where accidental == .natural:
+      return 0
+    case .c where accidental == .sharp:
+      return 1
+    case .d where accidental == .natural:
+      return 2
+    case .d where accidental == .sharp:
+      return 3
+    case .e:
+      return 4
+    case .f where accidental == .natural:
+      return 5
+    case .f where accidental == .sharp:
+      return 6
+    case .g where accidental == .natural:
+      return 7
+    case .g where accidental == .sharp:
+      return 8
+    case .a where accidental == .natural:
+      return 9
+    case .a where accidental == .sharp:
+      return 10
+    case .b:
+      return 11
+    default:
+      fatalError()
+    }
+  }
+
+  private static func lvlvNames(at index: Int) -> (hans: String, pinyin: String) {
+    let names: [(hans: String, pinyin: String)] = [
+      ("黄钟", "Huángzhōng"),
+      ("大吕", "Dàlǚ"),
+      ("太簇", "Tàicù"),
+      ("夹钟", "Jiázhōng"),
+      ("姑洗", "Gūxiǎn"),
+      ("仲吕", "Zhònglǚ"),
+      ("蕤宾", "Ruíbīn"),
+      ("林钟", "Línzhōng"),
+      ("夷则", "Yízé"),
+      ("南吕", "Nánlǚ"),
+      ("无射", "Wúyì"),
+      ("应钟", "Yìngzhōng"),
+    ]
+    return names[index]
+  }
+}

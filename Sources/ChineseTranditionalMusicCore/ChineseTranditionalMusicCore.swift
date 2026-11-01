@@ -99,9 +99,70 @@ extension Key {
   }
 }
 
+extension Key {
+  /// The 五音 name in the given language. `.zhHant` equals ``wuyinChineseName``.
+  public func localizedWuyinName(in language: DisplayLanguage) -> String {
+    switch language {
+    case .zhHant:
+      return wuyinChineseName
+    case .zhHans:
+      return type == .c ? "宫" : wuyinChineseName // 商角徵羽 are identical in both scripts
+    default:
+      switch type {
+      case .c: return "Gōng"
+      case .d: return "Shāng"
+      case .e: return "Jué"
+      case .g: return "Zhǐ"
+      case .a: return "Yǔ"
+      default: fatalError()
+      }
+    }
+  }
+
+  /// The 七聲 name in the given language. `.zhHant` equals ``qiShenChineseName``.
+  public func localizedQiShenName(in language: DisplayLanguage) -> String {
+    switch language {
+    case .zhHant:
+      return qiShenChineseName
+    case .zhHans:
+      switch type {
+      case .c: return "宫"
+      case .f where accidental == .sharp: return "变徵"
+      case .b: return "变宫"
+      default: return qiShenChineseName
+      }
+    default:
+      switch type {
+      case .c: return "Gōng"
+      case .d: return "Shāng"
+      case .e: return "Jué"
+      case .f where accidental == .natural: return "Qīngjué"
+      case .f where accidental == .sharp: return "Biànzhǐ"
+      case .g: return "Zhǐ"
+      case .a where accidental == .sharp: return "Qīngyǔ"
+      case .a where accidental == .natural: return "Yǔ"
+      case .b: return "Biàngōng"
+      default: fatalError()
+      }
+    }
+  }
+}
+
 // MARK: - 變
 
 public enum 變 {
   case 清
   case 變
+}
+
+extension 變: LocalizedNaming {
+  public func localizedName(in language: DisplayLanguage) -> String {
+    switch (self, language) {
+    case (.清, .zhHant), (.清, .zhHans): return "清"
+    case (.變, .zhHant): return "變"
+    case (.變, .zhHans): return "变"
+    case (.清, _): return "Qīng"
+    case (.變, _): return "Biàn"
+    }
+  }
 }
