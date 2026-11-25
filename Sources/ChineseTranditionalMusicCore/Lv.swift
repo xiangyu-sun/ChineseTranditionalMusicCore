@@ -82,6 +82,9 @@ extension Key {
 
 extension Key {
   /// The 十二律呂 name in the given language. `.zhHant` equals ``lvlvDescription``.
+  ///
+  /// The pitches are proper names, so `.en`, `.es` and every other non-Chinese
+  /// language use Pinyin with tone marks, e.g. "Huángzhōng".
   public func localizedLvlvName(in language: DisplayLanguage) -> String {
     switch language {
     case .zhHant:

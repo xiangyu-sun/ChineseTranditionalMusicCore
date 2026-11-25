@@ -101,6 +101,9 @@ extension Key {
 
 extension Key {
   /// The 五音 name in the given language. `.zhHant` equals ``wuyinChineseName``.
+  ///
+  /// `.en`, `.es` and every other non-Chinese language use Pinyin with tone
+  /// marks, e.g. "Gōng".
   public func localizedWuyinName(in language: DisplayLanguage) -> String {
     switch language {
     case .zhHant:
@@ -120,6 +123,9 @@ extension Key {
   }
 
   /// The 七聲 name in the given language. `.zhHant` equals ``qiShenChineseName``.
+  ///
+  /// `.en`, `.es` and every other non-Chinese language use Pinyin with tone
+  /// marks, e.g. "Biàngōng".
   public func localizedQiShenName(in language: DisplayLanguage) -> String {
     switch language {
     case .zhHant:

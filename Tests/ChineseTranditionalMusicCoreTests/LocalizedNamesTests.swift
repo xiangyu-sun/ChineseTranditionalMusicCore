@@ -36,6 +36,53 @@ import Testing
     }
   }
 
+  @Test func spanishIsABuiltInLanguage() {
+    #expect(DisplayLanguage.allCases.contains(.es))
+    #expect(DisplayLanguage(identifier: "es-ES") == .es)
+    #expect(DisplayLanguage(identifier: "es-MX") == .es)
+  }
+
+  @Test(arguments: DisplayLanguage.allCases.filter { $0 != .zhHant && $0 != .zhHans })
+  func nonChineseLanguagesHaveNoHanCharacters(language: DisplayLanguage) {
+    let names =
+      Key.shierLvLv.map { $0.localizedLvlvName(in: language) }
+      + Key.wuyin.map { $0.localizedWuyinName(in: language) }
+      + Key.qishen.map { $0.localizedQiShenName(in: language) }
+      + [變.清, 變.變].map { $0.localizedName(in: language) }
+
+    for name in names {
+      #expect(!name.unicodeScalars.contains { $0.properties.isIdeographic }, "\(language): \(name)")
+    }
+  }
+
+  @Test func spanishLvlvNames() {
+    #expect(
+      Key.shierLvLv.map { $0.localizedLvlvName(in: .es) } == [
+        "Huángzhōng", "Dàlǚ", "Tàicù", "Jiázhōng", "Gūxiǎn", "Zhònglǚ",
+        "Ruíbīn", "Línzhōng", "Yízé", "Nánlǚ", "Wúyì", "Yìngzhōng",
+      ])
+  }
+
+  @Test func spanishWuyinAndQishenNames() {
+    #expect(Key.wuyin.map { $0.localizedWuyinName(in: .es) } == ["Gōng", "Shāng", "Jué", "Zhǐ", "Yǔ"])
+    #expect(Key.gong.localizedQiShenName(in: .es) == "Gōng")
+    #expect(Key.shang.localizedQiShenName(in: .es) == "Shāng")
+    #expect(Key.jue.localizedQiShenName(in: .es) == "Jué")
+    #expect(Key.wei.localizedQiShenName(in: .es) == "Zhǐ")
+    #expect(Key.yu.localizedQiShenName(in: .es) == "Yǔ")
+    #expect(Key.qingyu.localizedQiShenName(in: .es) == "Qīngyǔ")
+    #expect(Key.biangong.localizedQiShenName(in: .es) == "Biàngōng")
+    #expect(Key.qingjue.localizedQiShenName(in: .es) == "Qīngjué")
+    #expect(Key.bianhui.localizedQiShenName(in: .es) == "Biànzhǐ")
+    #expect(變.清.localizedName(in: .es) == "Qīng")
+    #expect(變.變.localizedName(in: .es) == "Biàn")
+  }
+
+  /// The Spanish names the app shows next to these come from ChineseAstrologyCalendar.
+  @Test func spanishWuxingOfWuyin() {
+    #expect(Key.wuyin.map { $0.wuxing.localizedName(in: .es) } == ["Tierra", "Metal", "Madera", "Fuego", "Agua"])
+  }
+
   @Test func simplifiedSpotChecks() {
     #expect(Key.huangzhong.localizedLvlvName(in: .zhHans) == "黄钟")
     #expect(Key.dalv.localizedLvlvName(in: .zhHans) == "大吕")
